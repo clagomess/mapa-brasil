@@ -8,5 +8,8 @@
   },
   "author": "Cláudio Gomes",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^6.2.0"
+  }
 }
