@@ -65,6 +65,22 @@ describe('JsonEstrutura', () => {
       });
     });
   });
+
+  it('unidadeFederacao', () => {
+    let filename = 'br_unidades_da_federacao.json';
+
+    console.log(`Testando: ${filename}`);
+
+    let json = JSON.parse(fs.readFileSync('data/' + filename).toString());
+
+    assert.ok(json.length);
+
+    json.forEach(item => {
+      assert.ok(item.hasOwnProperty("NM_ESTADO"));
+      assert.ok(item.hasOwnProperty("NM_REGIAO"));
+      assert.ok(item.hasOwnProperty("CD_GEOCUF"));
+    });
+  });
 });
 
 describe('SvgEstrutura', () => {
@@ -102,5 +118,10 @@ describe('SvgEstrutura', () => {
       let filename = sgl === 'br' ? 'br_municipios' : sgl + '_municipios';
       fnCompare(filename);
     });
+  });
+
+  it('unidadeFederacao', () => {
+    let filename = 'br_unidades_da_federacao';
+    fnCompare(filename);
   });
 });
