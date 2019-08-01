@@ -21,7 +21,7 @@ describe('JsonEstrutura', () => {
 
       console.log(`Testando: ${filename}`);
 
-      let json = JSON.parse(fs.readFileSync('data/' + filename).toString());
+      let json = JSON.parse(fs.readFileSync('data/json/mesorregioes/' + filename).toString());
 
       assert.ok(json.length);
 
@@ -38,7 +38,7 @@ describe('JsonEstrutura', () => {
 
       console.log(`Testando: ${filename}`);
 
-      let json = JSON.parse(fs.readFileSync('data/' + filename).toString());
+      let json = JSON.parse(fs.readFileSync('data/json/microrregioes/' + filename).toString());
 
       assert.ok(json.length);
 
@@ -55,7 +55,7 @@ describe('JsonEstrutura', () => {
 
       console.log(`Testando: ${filename}`);
 
-      let json = JSON.parse(fs.readFileSync('data/' + filename).toString());
+      let json = JSON.parse(fs.readFileSync('data/json/municipios/' + filename).toString());
 
       assert.ok(json.length);
 
@@ -71,7 +71,7 @@ describe('JsonEstrutura', () => {
 
     console.log(`Testando: ${filename}`);
 
-    let json = JSON.parse(fs.readFileSync('data/' + filename).toString());
+    let json = JSON.parse(fs.readFileSync('data/json/federacao/' + filename).toString());
 
     assert.ok(json.length);
 
@@ -88,11 +88,11 @@ describe('SvgEstrutura', () => {
     console.log(`Testando: ${filename}.svg`);
 
     // SVG
-    let svgRaw = fs.readFileSync('data/' + filename + '.svg').toString();
+    let svgRaw = fs.readFileSync('data/svg/low/' + filename + '.svg').toString();
     let svgJson = JSON.parse(xmlJs.xml2json(svgRaw, {compact: true, spaces: 2}));
 
     // JSON
-    let json = JSON.parse(fs.readFileSync('data/' + filename + '.json').toString());
+    let json = JSON.parse(fs.readFileSync('data/json/' + filename + '.json').toString());
 
     // COMPARE
     let path = svgJson['svg']['g']['path'];
@@ -101,27 +101,24 @@ describe('SvgEstrutura', () => {
 
   it('mesorregiao', () => {
     listUf.forEach((sgl) => {
-      let filename = sgl === 'br' ? 'br_mesorregioes' : sgl + '_mesorregioes';
-      fnCompare(filename);
+      fnCompare('mesorregioes/' + sgl + '_mesorregioes');
     });
   });
 
   it('microrregiao', () => {
     listUf.forEach((sgl) => {
-      let filename = sgl === 'br' ? 'br_microrregioes' : sgl + '_microrregioes';
-      fnCompare(filename);
+      fnCompare('microrregioes/' + sgl + '_microrregioes');
     });
   });
 
   it('municipio', () => {
     listUf.forEach((sgl) => {
-      let filename = sgl === 'br' ? 'br_municipios' : sgl + '_municipios';
-      fnCompare(filename);
+      fnCompare('municipios/' + sgl + '_municipios');
     });
   });
 
   it('unidadeFederacao', () => {
-    let filename = 'br_unidades_da_federacao';
+    let filename = 'federacao/br_unidades_da_federacao';
     fnCompare(filename);
   });
 });
