@@ -5,13 +5,14 @@ const fs = require('fs');
 const xmlJs = require('xml-js');
 
 const listUf = [
+  'br',
   'ac', 'al', 'am', 'ap',
   'ba', 'ce', 'df', 'es',
   'go', 'ma', 'mg', 'ms',
   'mt', 'pa', 'pb', 'pe',
   'pi', 'pr', 'rj', 'rn',
   'ro', 'rr', 'rs', 'sc',
-  'se', 'sp', 'to', 'br',
+  'se', 'sp', 'to'
 ];
 
 describe('JsonEstrutura', () => {
