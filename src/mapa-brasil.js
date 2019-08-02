@@ -46,25 +46,18 @@ let draw = (element, options) => {
 };
 
 let getPath = function(options, isJson) {
-  const map = {
-    'mesorregiao': 'mesorregioes',
-    'microregiao': 'microrregioes',
-    'municipio': 'municipios',
-    'federacao': 'federacao',
-  };
-
   let path = options.dataPath;
 
   if(isJson) {
     path += `/json/${map[options.regiao]}/`;
   }else{
-    path += `/svg/${options.qualidade}/${map[options.regiao]}/`;
+    path += `/svg/${options.qualidade}/${constantes.mapPath[options.regiao]}/`;
   }
 
   if(options.regiao === 'federacao'){
     path += 'br_unidades_da_federacao';
   }else {
-    path += options.unidade + '_' + map[options.regiao];
+    path += options.unidade + '_' + constantes.mapPath[options.regiao];
   }
 
   path += (isJson ? '.json' : '.svg');

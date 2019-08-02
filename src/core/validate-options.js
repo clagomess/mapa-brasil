@@ -22,6 +22,8 @@ module.exports = (options) => {
 
   if (!options.hasOwnProperty('regiao')) {
     options.regiao = 'federacao';
+  }else{
+    options.regiao = validateRegiao(options.regiao);
   }
 
   if (!options.hasOwnProperty('qualidade')) {
@@ -70,4 +72,17 @@ let validateUnidade = (unidade) =>{
   }
 
   return unidade;
+};
+
+// regiao
+let validateRegiao = (regiao) => {
+  if((typeof regiao) != 'string'){
+    throw new Error("options.regiao: esperado {string}");
+  }
+
+  if(!constantes.mapPath[regiao]){
+    throw new Error(`options.unidade: "${regiao}" => valor invalido`);
+  }
+
+  return regiao;
 };

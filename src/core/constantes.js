@@ -34,5 +34,12 @@ module.exports = {
     'mesorregiao': 'NM_MESO',
     'microregiao': 'NM_MICRO',
     'municipio': 'NM_MUNICIP',
+  },
+
+  mapPath: {
+    'mesorregiao': 'mesorregioes',
+    'microregiao': 'microrregioes',
+    'municipio': 'municipios',
+    'federacao': 'federacao',
   }
 };
