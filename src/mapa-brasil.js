@@ -1,4 +1,5 @@
 require('whatwg-fetch');
+const validateOptions = require('./core/validate-options');
 
 'use strict';
 
@@ -12,6 +13,7 @@ let draw = (element, options) => {
   Promise.all([
     loadDataFile(false, getPath(options, false)),
     loadDataFile(true, getPath(options, true)),
+    options.unidadeData
   ]).then(result => {
     console.log(result);
     element.innerHTML = result[0];
@@ -29,35 +31,6 @@ let draw = (element, options) => {
       listPath[i].innerHTML = `<title>${result[1][i]['NM_ESTADO']}</title>`;
     }
   });
-};
-
-let validateOptions = (options) => {
-  // check
-  if (!options.hasOwnProperty('dataPath')) {
-    options.dataPath = '/data';
-  }
-
-  if (!options.hasOwnProperty('unidade')) { //@TODO: quando for number, converter para sigla
-    options.unidade = 'br';
-  }
-
-  if (!options.hasOwnProperty('regiao')) {
-    options.regiao = 'federacao';
-  }
-
-  if (!options.hasOwnProperty('qualidade')) {
-    options.qualidade = 'low';
-  }
-
-  if (!options.hasOwnProperty('defaultFillColor')) {
-    options.defaultFillColor = '#FFF3E3';
-  }
-
-  if (!options.hasOwnProperty('defaultStrokeColor')) {
-    options.defaultStrokeColor = '#1F1A17';
-  }
-
-  return options;
 };
 
 let getPath = function(options, isJson) {
