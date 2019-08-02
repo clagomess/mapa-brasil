@@ -26,4 +26,13 @@ describe('ValidateOptions', () => {
     });
   });
 
+  it('validateQualidade', () => {
+    assert.strictEqual(validateOptions({}).qualidade, 'low');
+    assert.strictEqual(validateOptions({qualidade: 'low'}).qualidade, 'low');
+
+    listThrowsObjects.forEach(item => {
+      assert.throws(() => validateOptions({qualidade: item}).qualidade);
+    });
+  });
+
 });

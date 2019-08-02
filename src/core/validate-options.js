@@ -28,6 +28,8 @@ module.exports = (options) => {
 
   if (!options.hasOwnProperty('qualidade')) {
     options.qualidade = 'low';
+  }else{
+    options.qualidade = validateQualidade(options.qualidade);
   }
 
   if (!options.hasOwnProperty('defaultFillColor')) {
@@ -85,4 +87,17 @@ let validateRegiao = (regiao) => {
   }
 
   return regiao;
+};
+
+// qualidade
+let validateQualidade = (qualidade) => {
+  if((typeof qualidade) != 'string'){
+    throw new Error("options.qualidade: esperado {string}");
+  }
+
+  if(qualidade !== 'low'){
+    throw new Error(`options.qualidade: "${regiao}" => valor invalido`);
+  }
+
+  return qualidade;
 };
