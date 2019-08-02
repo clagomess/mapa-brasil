@@ -7,7 +7,7 @@ npm install mapa-brasil
 
 Ou
 
-Download de `mapa-brasil.min.js` na página de releases
+Download de `mapa-brasil.min.js` na página de [releases](https://github.com/clagomess/mapa-brasil/releases/latest).
 
 ## Uso
 ### Html
@@ -22,6 +22,7 @@ Download de `mapa-brasil.min.js` na página de releases
 </script>
 ```
 
+### Javascript
 ```javascript
 // @TODO: Implements
 ```
@@ -51,11 +52,11 @@ export class IndicadorComponent {
 Atributo | Tipo | Valor Padrão | Descrição
 -------- | ---- | ------------ | ---------------
 dataPath | `string` | `'/data'` | URL dos assets
-unidade | `string, number` | `'br'` | Cód. IBGE ou sigla da UF. Ex.: `52`, `'df'`
-regiao | `string` | `'federacao'` | Valores permitidos:  mesorregiao, microregiao, municipio, federacao
-defaultFillColor | `string` | '#FFF3E3' | -
-defaultStrokeColor | `string` | '#1F1A17' | -
-unidadeData | `Array, Promise` | - | -
+unidade | `string`, `number` | `'br'` | Cód. IBGE ou sigla da UF. Ex.: `52`, `'df'`
+regiao | `string` | `'federacao'` | Valores permitidos:  `'mesorregiao'`, `'microregiao'`, `'municipio'`, `'federacao'`
+defaultFillColor | `string` | `'#FFF3E3'` | -
+defaultStrokeColor | `string` | `'#1F1A17'` | -
+unidadeData | `Array`, `Promise` | - | -
 onClick | `function` | - | -
 
 ## Exemplos
