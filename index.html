@@ -2,26 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Mapa Brasil</title>
 </head>
 <body>
 
 <div id="mapa" style="height: 600px; width: 600px"></div>
+<br>
+<input type="button" value="Brasil Federacao" onclick="brasilFederacao()">
+<input type="button" value="Brasil Mesorregiao" onclick="brasilMesorregiao()">
+<input type="button" value="Brasil Microrregiao" onclick="brasilMicroregiao()">
+<input type="button" value="Brasil Município" onclick="brasilMunicipio()">
+<br>
+<br>
+<input type="button" value="Brasil -> Mesorregiao" onclick="brasilGoToMesorregiao()">
+<input type="button" value="Brasil -> Microrregiao" onclick="brasilGoToMicroregiao()">
+<input type="button" value="Brasil -> Município" onclick="brasilGoToMunicipio()">
 
 <script type="text/javascript">
-    window.onload = function () {
+    function brasilFederacao() {
         MapaBrasil(document.getElementById('mapa'), {
             unidadeData: [
                 {codIbge: 52, fillColor: '#d82b40'},
                 {codIbge: 43, fillColor: '#d82b40'},
             ],
+            onClick: function (data) {console.log(data)}
+        });
+    }
+
+    function brasilMunicipio() {
+        MapaBrasil(document.getElementById('mapa'), {regiao: 'municipio', onClick: function (data) {console.log(data)}});
+    }
+
+    function brasilMesorregiao() {
+        MapaBrasil(document.getElementById('mapa'), {regiao: 'mesorregiao', onClick: function (data) {console.log(data)}});
+    }
+
+    function brasilMicroregiao() {
+        MapaBrasil(document.getElementById('mapa'), {regiao: 'microregiao', onClick: function (data) {console.log(data)}});
+    }
+
+    // GO TO
+    function brasilGoToMunicipio() {
+        MapaBrasil(document.getElementById('mapa'), {
             onClick: function (data) {
+                console.log(data);
                 MapaBrasil(document.getElementById('mapa'), {
                     unidade: data.codIbge,
-                    regiao: 'municipio'
+                    regiao: 'municipio',
+                    onClick: function (data) {
+                        console.log(data)
+                    }
                 });
             }
         });
+    }
+
+    function brasilGoToMesorregiao() {
+        MapaBrasil(document.getElementById('mapa'), {
+            onClick: function (data) {
+                console.log(data);
+                MapaBrasil(document.getElementById('mapa'), {
+                    unidade: data.codIbge,
+                    regiao: 'mesorregiao',
+                    onClick: function (data) {
+                        console.log(data)
+                    }
+                });
+            }
+        });
+    }
+
+    function brasilGoToMicroregiao() {
+        MapaBrasil(document.getElementById('mapa'), {
+            onClick: function (data) {
+                console.log(data);
+                MapaBrasil(document.getElementById('mapa'), {
+                    unidade: data.codIbge,
+                    regiao: 'microregiao',
+                    onClick: function (data) {
+                        console.log(data)
+                    }
+                });
+            }
+        });
+    }
+
+    window.onload = function () {
+        brasilFederacao();
     }
 </script>
 

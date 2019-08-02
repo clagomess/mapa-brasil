@@ -49,7 +49,7 @@ let getPath = function(options, isJson) {
   let path = options.dataPath;
 
   if(isJson) {
-    path += `/json/${map[options.regiao]}/`;
+    path += `/json/${constantes.mapPath[options.regiao]}/`;
   }else{
     path += `/svg/${options.qualidade}/${constantes.mapPath[options.regiao]}/`;
   }
