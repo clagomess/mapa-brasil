@@ -36,6 +36,11 @@ let draw = (element, options) => {
       listPath[i].style.fill = (unidadeData.hasOwnProperty('fillColor') ? unidadeData.fillColor : options.defaultFillColor);
       listPath[i].style.stroke = options.defaultStrokeColor;
       listPath[i].innerHTML = `<title>${nomUnidade}</title>`;
+      listPath[i].onclick = () => {
+        if(options.hasOwnProperty('onClick')){
+          options.onClick({codIbge: codIbge, nomUnidade: nomUnidade})
+        }
+      }
     }
   });
 };
@@ -45,14 +50,15 @@ let getPath = function(options, isJson) {
     'mesorregiao': 'mesorregioes',
     'microregiao': 'microrregioes',
     'municipio': 'municipios',
+    'federacao': 'federacao',
   };
 
   let path = options.dataPath;
 
   if(isJson) {
-    path += `/json/${options.regiao}/`;
+    path += `/json/${map[options.regiao]}/`;
   }else{
-    path += `/svg/${options.qualidade}/${options.regiao}/`;
+    path += `/svg/${options.qualidade}/${map[options.regiao]}/`;
   }
 
   if(options.regiao === 'federacao'){

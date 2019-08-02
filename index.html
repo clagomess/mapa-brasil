@@ -14,7 +14,13 @@
             unidadeData: [
                 {codIbge: 52, fillColor: '#d82b40'},
                 {codIbge: 43, fillColor: '#d82b40'},
-            ]
+            ],
+            onClick: function (data) {
+                MapaBrasil(document.getElementById('mapa'), {
+                    unidade: data.codIbge,
+                    regiao: 'municipio'
+                });
+            }
         });
     }
 </script>

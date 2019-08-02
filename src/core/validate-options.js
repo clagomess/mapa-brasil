@@ -1,5 +1,13 @@
+const constantes = require('./constantes');
+
 'use strict';
 
+/**
+ * @param options
+ * @return {{
+ *     onClick: function
+ * }}
+ */
 module.exports = (options) => {
   // check
   if (!options.hasOwnProperty('dataPath')) {
@@ -8,6 +16,8 @@ module.exports = (options) => {
 
   if (!options.hasOwnProperty('unidade')) { //@TODO: quando for number, converter para sigla
     options.unidade = 'br';
+  }else{
+    options.unidade = validateUnidade(options.unidade);
   }
 
   if (!options.hasOwnProperty('regiao')) {
@@ -39,4 +49,15 @@ module.exports = (options) => {
   }
 
   return options;
+};
+
+// ### VALIDATE
+
+// unidade
+let validateUnidade = (unidade) =>{
+  if(Number.isInteger(unidade)){
+    unidade = constantes.codIbgeEstadoToSigla[unidade];
+  }
+
+  return unidade;
 };
