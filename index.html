@@ -10,7 +10,12 @@
 
 <script type="text/javascript">
     window.onload = function () {
-        MapaBrasil(document.getElementById('mapa'), {});
+        MapaBrasil(document.getElementById('mapa'), {
+            unidadeData: [
+                {codIbge: 52, fillColor: '#d82b40'},
+                {codIbge: 43, fillColor: '#d82b40'},
+            ]
+        });
     }
 </script>
 

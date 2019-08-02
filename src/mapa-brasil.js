@@ -1,5 +1,6 @@
 require('whatwg-fetch');
 const validateOptions = require('./core/validate-options');
+const constantes = require('./core/constantes');
 
 'use strict';
 
@@ -26,9 +27,15 @@ let draw = (element, options) => {
     // paths
     let listPath = svgEl.getElementsByTagName('g')[0].getElementsByTagName('path');
     for (let i = 0; i < listPath.length; i++) {
-      listPath[i].style.fill = options.defaultFillColor;
+      const codIbge = parseInt(result[1][i][constantes.codIbgeAttr[options.regiao]]);
+      const nomUnidade = result[1][i][constantes.nomeUnidadeAttr[options.regiao]];
+
+      let unidadeData = result[2].filter(item => item.codIbge === codIbge);
+      unidadeData = unidadeData.length > 0 ? unidadeData[0] : {};
+
+      listPath[i].style.fill = (unidadeData.hasOwnProperty('fillColor') ? unidadeData.fillColor : options.defaultFillColor);
       listPath[i].style.stroke = options.defaultStrokeColor;
-      listPath[i].innerHTML = `<title>${result[1][i]['NM_ESTADO']}</title>`;
+      listPath[i].innerHTML = `<title>${nomUnidade}</title>`;
     }
   });
 };
@@ -43,9 +50,9 @@ let getPath = function(options, isJson) {
   let path = options.dataPath;
 
   if(isJson) {
-    path += '/json/' + options.regiao + '/';
+    path += `/json/${options.regiao}/`;
   }else{
-    path += '/svg/' + options.qualidade + '/' + options.regiao + '/';
+    path += `/svg/${options.qualidade}/${options.regiao}/`;
   }
 
   if(options.regiao === 'federacao'){

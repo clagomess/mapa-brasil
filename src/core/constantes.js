@@ -9,5 +9,19 @@ module.exports = {
     31:	'mg', 32:	'es', 33:	'rj', 35:	'sp',
     41:	'pr', 42:	'sc', 43:	'rs', 50:	'ms',
     51:	'mt', 52:	'go', 53:	'df',
+  },
+
+  codIbgeAttr: {
+    'federacao': 'CD_GEOCUF',
+    'mesorregiao': 'CD_GEOCME',
+    'microregiao': 'CD_GEOCMI',
+    'municipio': 'CD_GEOCMU',
+  },
+
+  nomeUnidadeAttr: {
+    'federacao': 'NM_ESTADO',
+    'mesorregiao': 'NM_MESO',
+    'microregiao': 'NM_MICRO',
+    'municipio': 'NM_MUNICIP',
   }
 };
