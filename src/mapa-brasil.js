@@ -30,7 +30,6 @@ let draw = (element, options) => {
       const codIbge = parseInt(result[1][i][constantes.codIbgeAttr[options.regiao]]);
       const nomUnidade = result[1][i][constantes.nomeUnidadeAttr[options.regiao]];
 
-      // @TODO: validate unidadeData
       let unidadeData = result[2].filter(item => item.codIbge === codIbge);
       unidadeData = unidadeData.length > 0 ? unidadeData[0] : {};
 

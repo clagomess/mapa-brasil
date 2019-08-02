@@ -79,7 +79,7 @@ let validateRegiao = (regiao) => {
   }
 
   if(!constantes.mapPath[regiao]){
-    throw new Error(`options.unidade: "${regiao}" => valor invalido`);
+    throw new Error(`options.regiao: "${regiao}" => valor invalido`);
   }
 
   return regiao;
