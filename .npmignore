@@ -7,3 +7,4 @@ node_modules
 webpack.*
 index.html
 .editorconfig
+.travis.yml
