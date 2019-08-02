@@ -10,8 +10,8 @@ let draw = (element, options) => {
   options = validateOptions(options);
 
   Promise.all([
-    loadDataFile(false, '/data/svg/low/federacao/br_unidades_da_federacao.svg'),
-    loadDataFile(true, 'data/json/federacao/br_unidades_da_federacao.json'),
+    loadDataFile(false, getPath(options, false)),
+    loadDataFile(true, getPath(options, true)),
   ]).then(result => {
     console.log(result);
     element.innerHTML = result[0];
@@ -34,11 +34,11 @@ let draw = (element, options) => {
 let validateOptions = (options) => {
   // check
   if (!options.hasOwnProperty('dataPath')) {
-    options.dataPath = '/data/';
+    options.dataPath = '/data';
   }
 
-  if (!options.hasOwnProperty('sigla')) {
-    options.sigla = 'br';
+  if (!options.hasOwnProperty('unidade')) { //@TODO: quando for number, converter para sigla
+    options.unidade = 'br';
   }
 
   if (!options.hasOwnProperty('regiao')) {
@@ -58,6 +58,32 @@ let validateOptions = (options) => {
   }
 
   return options;
+};
+
+let getPath = function(options, isJson) {
+  const map = {
+    'mesorregiao': 'mesorregioes',
+    'microregiao': 'microrregioes',
+    'municipio': 'municipios',
+  };
+
+  let path = options.dataPath;
+
+  if(isJson) {
+    path += '/json/' + options.regiao + '/';
+  }else{
+    path += '/svg/' + options.qualidade + '/' + options.regiao + '/';
+  }
+
+  if(options.regiao === 'federacao'){
+    path += 'br_unidades_da_federacao';
+  }else {
+    path += options.unidade + '_' + map[options.regiao];
+  }
+
+  path += (isJson ? '.json' : '.svg');
+
+  return path;
 };
 
 let loadDataFile = async (isJson, path) => {
