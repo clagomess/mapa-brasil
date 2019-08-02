@@ -1,3 +1,8 @@
+# git ignore
+.idea
+node_modules
+
+# only npm publish
 /test
 webpack.config.js
 index.html
