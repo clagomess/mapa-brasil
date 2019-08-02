@@ -1,4 +1,6 @@
-//import 'whatwg-fetch';
+require('whatwg-fetch');
+
+'use strict';
 
 module.exports = async (element, options) => {
   console.log("Disgraça");
