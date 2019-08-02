@@ -3,21 +3,11 @@
 const assert = require('assert');
 const fs = require('fs');
 const xmlJs = require('xml-js');
-
-const listUf = [
-  'br',
-  'ac', 'al', 'am', 'ap',
-  'ba', 'ce', 'df', 'es',
-  'go', 'ma', 'mg', 'ms',
-  'mt', 'pa', 'pb', 'pe',
-  'pi', 'pr', 'rj', 'rn',
-  'ro', 'rr', 'rs', 'sc',
-  'se', 'sp', 'to'
-];
+const constantes = require('../src/core/constantes');
 
 describe('JsonEstrutura', () => {
   it('mesorregiao', () => {
-    listUf.forEach((sgl) => {
+    constantes.listUfSigla.forEach((sgl) => {
       let filename = sgl === 'br' ? 'br_mesorregioes.json' : sgl + '_mesorregioes.json';
 
       console.log(`Testando: ${filename}`);
@@ -34,7 +24,7 @@ describe('JsonEstrutura', () => {
   });
 
   it('microrregiao', () => {
-    listUf.forEach((sgl) => {
+    constantes.listUfSigla.forEach((sgl) => {
       let filename = sgl === 'br' ? 'br_microrregioes.json' : sgl + '_microrregioes.json';
 
       console.log(`Testando: ${filename}`);
@@ -51,7 +41,7 @@ describe('JsonEstrutura', () => {
   });
 
   it('municipio', () => {
-    listUf.forEach((sgl) => {
+    constantes.listUfSigla.forEach((sgl) => {
       let filename = sgl === 'br' ? 'br_municipios.json' : sgl + '_municipios.json';
 
       console.log(`Testando: ${filename}`);
@@ -101,19 +91,19 @@ describe('SvgEstrutura', () => {
   };
 
   it('mesorregiao', () => {
-    listUf.forEach((sgl) => {
+    constantes.listUfSigla.forEach((sgl) => {
       fnCompare('mesorregioes/' + sgl + '_mesorregioes');
     });
   });
 
   it('microrregiao', () => {
-    listUf.forEach((sgl) => {
+    constantes.listUfSigla.forEach((sgl) => {
       fnCompare('microrregioes/' + sgl + '_microrregioes');
     });
   });
 
   it('municipio', () => {
-    listUf.forEach((sgl) => {
+    constantes.listUfSigla.forEach((sgl) => {
       fnCompare('municipios/' + sgl + '_municipios');
     });
   });

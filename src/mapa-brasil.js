@@ -16,7 +16,7 @@ let draw = (element, options) => {
     loadDataFile(true, getPath(options, true)),
     options.unidadeData
   ]).then(result => {
-    console.log(result);
+    console.log(result); //@TODO: remove
     element.innerHTML = result[0];
 
     // SVG

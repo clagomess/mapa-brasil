@@ -2,12 +2,6 @@ const constantes = require('./constantes');
 
 'use strict';
 
-/**
- * @param options
- * @return {{
- *     onClick: function
- * }}
- */
 module.exports = (options) => {
   // check
   if (!options.hasOwnProperty('dataPath')) {
