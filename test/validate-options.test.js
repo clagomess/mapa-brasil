@@ -35,4 +35,14 @@ describe('ValidateOptions', () => {
     });
   });
 
+  it('validateUnidadeData', () => {
+    assert.ok(validateOptions({}).unidadeData instanceof Promise);
+    assert.ok(validateOptions({unidadeData: []}).unidadeData instanceof Promise);
+    assert.ok(validateOptions({unidadeData: new Promise(() => null)}).unidadeData instanceof Promise);
+
+    listThrowsObjects.forEach(item => {
+      assert.throws(() => validateOptions({qualidade: item}).qualidade);
+    });
+  });
+
 });

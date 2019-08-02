@@ -45,6 +45,8 @@ module.exports = (options) => {
       resolve([]);
     }));
   }else{
+    validateUnidadeData(options.unidadeData);
+
     if(options.unidadeData instanceof Array){
       options.unidadeData = new Promise((resolve => {
         resolve(options.unidadeData);
@@ -100,4 +102,11 @@ let validateQualidade = (qualidade) => {
   }
 
   return qualidade;
+};
+
+// unidadeData
+let validateUnidadeData = (unidadeData) => {
+  if(!(unidadeData instanceof Array) && !(unidadeData instanceof Promise)){
+    throw new Error("options.unidadeData: esperado {Array} ou {Promise}");
+  }
 };
