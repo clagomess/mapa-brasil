@@ -23,9 +23,10 @@ let draw = (element, options) => {
 
     // paths
     let listPath = svgEl.getElementsByTagName('g')[0].getElementsByTagName('path');
-    for (let path of listPath) {
-      path.style.fill = options.defaultFillColor;
-      path.style.stroke = options.defaultStrokeColor;
+    for (let i = 0; i < listPath.length; i++) {
+      listPath[i].style.fill = options.defaultFillColor;
+      listPath[i].style.stroke = options.defaultStrokeColor;
+      listPath[i].innerHTML = `<title>${result[1][i]['NM_ESTADO']}</title>`;
     }
   });
 };
