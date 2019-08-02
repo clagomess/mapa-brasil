@@ -1,13 +1,18 @@
 {
   "name": "mapa-brasil",
-  "version": "0.0.2",
-  "description": "Gráfico dinámico do mapa Brasil",
+  "version": "0.0.3",
+  "description": "Gráfico dinámico do mapa do Brasil",
   "main": "src/mapa-brasil.js",
   "scripts": {
     "test": "mocha",
     "serve": "webpack-dev-server"
   },
   "author": "Cláudio Gomes",
+  "homepage": "https://github.com/clagomess/mapa-brasil",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clagomess/mapa-brasil.git"
+  },
   "license": "MIT",
   "dependencies": {
     "whatwg-fetch": "^3.0.0"
