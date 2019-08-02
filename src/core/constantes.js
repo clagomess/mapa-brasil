@@ -1,6 +1,17 @@
 'use strict';
 
 module.exports = {
+  listUfSigla: [
+    'br',
+    'ac', 'al', 'am', 'ap',
+    'ba', 'ce', 'df', 'es',
+    'go', 'ma', 'mg', 'ms',
+    'mt', 'pa', 'pb', 'pe',
+    'pi', 'pr', 'rj', 'rn',
+    'ro', 'rr', 'rs', 'sc',
+    'se', 'sp', 'to'
+  ],
+
   codIbgeEstadoToSigla: {
     12:	'ac', 13:	'am', 14:	'rr', 11:	'ro',
     15:	'pa', 16:	'ap', 17:	'to', 21:	'ma',

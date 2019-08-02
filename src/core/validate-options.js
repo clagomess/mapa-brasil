@@ -55,8 +55,18 @@ module.exports = (options) => {
 
 // unidade
 let validateUnidade = (unidade) =>{
+  if((typeof unidade) != 'number' && (typeof unidade) != 'string'){
+    throw new Error("options.unidade: esperado {number} ou {string}");
+  }
+
   if(Number.isInteger(unidade)){
     unidade = constantes.codIbgeEstadoToSigla[unidade];
+  }else{
+    unidade = unidade.toLowerCase();
+  }
+
+  if(!unidade || constantes.listUfSigla.indexOf(unidade) === -1){
+    throw new Error(`options.unidade: "${unidade}" => valor invalido`);
   }
 
   return unidade;
