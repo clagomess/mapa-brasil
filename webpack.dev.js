@@ -2,30 +2,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const merge = require('webpack-merge');
+const common = require('./webpack.common.js');
 
-module.exports = {
+module.exports = merge(common, {
   mode: "development",
-
-  entry: {
-    "mapa-brasil": './src/mapa-brasil.js'
-  },
-
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].min.js',
-    library: 'MapaBrasil',
-    libraryTarget: "umd"
-  },
-
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-      }
-    ]
-  },
 
   plugins: [
     new CleanWebpackPlugin(),
@@ -40,4 +21,4 @@ module.exports = {
     compress: true,
     port: 3000
   }
-};
+});

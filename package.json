@@ -5,7 +5,8 @@
   "main": "src/mapa-brasil.js",
   "scripts": {
     "test": "mocha",
-    "serve": "webpack-dev-server"
+    "serve": "webpack-dev-server --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
   },
   "author": "Cláudio Gomes",
   "homepage": "https://github.com/clagomess/mapa-brasil",
@@ -27,6 +28,7 @@
     "webpack": "^4.39.0",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2",
+    "webpack-merge": "^4.2.1",
     "xml-js": "^1.6.11"
   }
 }

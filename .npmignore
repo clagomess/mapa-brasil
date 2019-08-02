@@ -4,6 +4,6 @@ node_modules
 
 # only npm publish
 /test
-webpack.config.js
+webpack.*
 index.html
 .editorconfig
