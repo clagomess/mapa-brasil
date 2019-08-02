@@ -14,7 +14,7 @@ module.exports = (options) => {
     options.dataPath = '/data';
   }
 
-  if (!options.hasOwnProperty('unidade')) { //@TODO: quando for number, converter para sigla
+  if (!options.hasOwnProperty('unidade')) {
     options.unidade = 'br';
   }else{
     options.unidade = validateUnidade(options.unidade);
