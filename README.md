@@ -39,7 +39,7 @@ import mapaBrasil from 'mapa-brasil';
   selector: 'app-home',
   templateUrl: './home.component.html'
 })
-export class IndicadorComponent {
+export class HomeComponent {
   carregarMapa(){
     mapaBrasil(document.getElementById('mapa'), {})
   }
@@ -56,7 +56,7 @@ Atributo | Tipo | Valor Padrão | Descrição
 -------- | ---- | ------------ | ---------------
 dataPath | `string` | `'/data'` | URL dos assets
 unidade | `string`, `number` | `'br'` | Cód. IBGE ou sigla da UF. Ex.: `52`, `'df'`
-regiao | `string` | `'federacao'` | Valores permitidos:  `'mesorregiao'`, `'microregiao'`, `'municipio'`, `'federacao'`
+regiao | `string` | `'federacao'` | Valores permitidos:  `'mesorregiao'`, `'microrregiao'`, `'municipio'`, `'federacao'`
 defaultFillColor | `string` | `'#FFF3E3'` | -
 defaultStrokeColor | `string` | `'#1F1A17'` | -
 unidadeData | `Array`, `Promise` | - | -

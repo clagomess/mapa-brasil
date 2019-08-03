@@ -25,20 +25,20 @@ module.exports = {
   codIbgeAttr: {
     'federacao': 'CD_GEOCUF',
     'mesorregiao': 'CD_GEOCME',
-    'microregiao': 'CD_GEOCMI',
+    'microrregiao': 'CD_GEOCMI',
     'municipio': 'CD_GEOCMU',
   },
 
   nomeUnidadeAttr: {
     'federacao': 'NM_ESTADO',
     'mesorregiao': 'NM_MESO',
-    'microregiao': 'NM_MICRO',
+    'microrregiao': 'NM_MICRO',
     'municipio': 'NM_MUNICIP',
   },
 
   mapPath: {
     'mesorregiao': 'mesorregioes',
-    'microregiao': 'microrregioes',
+    'microrregiao': 'microrregioes',
     'municipio': 'municipios',
     'federacao': 'federacao',
   }
