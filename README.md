@@ -63,7 +63,35 @@ unidadeData | <ul><li>`Array`</li><li>`Promise`</li></ul>  | - | -
 onClick | `function` | - | Ex.: `(data) => {}`
 
 ## Exemplos
+Mais exemplos podem ser vistos em `index.html` no repositório.
 
+### Personalização
+```javascript
+MapaBrasil(document.getElementById('mapa'), {
+    unidadeData: [
+        {codIbge: 52, fillColor: '#d82b40'},
+        {codIbge: 43, fillColor: '#d82b40'},
+        {codIbge: 11, fillColor: '#ffa700', strokeColor: '#008744', strokeWidth: 4},
+    ],
+    onClick: function (data) {console.log(data)}
+});
 ```
-//@TODO: Implements
+
+![Exemplo 001](https://raw.githubusercontent.com/clagomess/mapa-brasil/master/exemplos/exemplo_001.png)
+
+### Brasil -> Município
+```javascript
+MapaBrasil(document.getElementById('mapa'), {
+    onClick: function (data) {
+        MapaBrasil(document.getElementById('mapa'), {
+            unidade: data.codIbge,
+            regiao: 'municipio',
+            onClick: function (data) {
+                console.log(data)
+            }
+        });
+    }
+});
 ```
+
+![Exemplo 002](https://raw.githubusercontent.com/clagomess/mapa-brasil/master/exemplos/exemplo_002.png)
