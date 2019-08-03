@@ -8,9 +8,7 @@
 npm install mapa-brasil
 ```
 
-Ou
-
-Download de `mapa-brasil.min.js` na página de [releases](https://github.com/clagomess/mapa-brasil/releases/latest).
+Ou download de `mapa-brasil.min.js` na página de [releases](https://github.com/clagomess/mapa-brasil/releases/latest).
 
 ## Uso
 ### Html
@@ -27,7 +25,9 @@ Download de `mapa-brasil.min.js` na página de [releases](https://github.com/cla
 
 ### Javascript
 ```javascript
-// @TODO: Implements
+const mapaBrasil = require('mapa-brasil');
+
+mapaBrasil(document.getElementById('mapa'), {})
 ```
 
 ### Typescript
