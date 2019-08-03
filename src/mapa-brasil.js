@@ -16,7 +16,6 @@ let draw = (element, options) => {
     loadDataFile(true, getPath(options, true)),
     options.unidadeData
   ]).then(result => {
-    console.log(result); //@TODO: remove
     element.innerHTML = result[0];
 
     // SVG
@@ -34,7 +33,8 @@ let draw = (element, options) => {
       unidadeData = unidadeData.length > 0 ? unidadeData[0] : {};
 
       listPath[i].style.fill = (unidadeData.hasOwnProperty('fillColor') ? unidadeData.fillColor : options.defaultFillColor);
-      listPath[i].style.stroke = options.defaultStrokeColor;
+      listPath[i].style.stroke = (unidadeData.hasOwnProperty('strokeColor') ? unidadeData.strokeColor : options.defaultStrokeColor);
+      listPath[i].style.strokeWidth = (unidadeData.hasOwnProperty('strokeWidth') ? unidadeData.strokeWidth : 1);
       listPath[i].innerHTML = `<title>${nomUnidade}</title>`;
       listPath[i].onclick = () => {
         if(options.hasOwnProperty('onClick')){

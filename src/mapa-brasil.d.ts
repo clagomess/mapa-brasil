@@ -10,7 +10,9 @@ type Options = {
   unidadeData?:
     {
       codIbge: number,
-      fillColor: string,
+      fillColor?: string,
+      strokeColor?: string,
+      strokeWidth?: number,
     }[] |
     Promise<{
       codIbge: number,
