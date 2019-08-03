@@ -55,12 +55,12 @@ export class HomeComponent {
 Atributo | Tipo | Valor Padrão | Descrição
 -------- | ---- | ------------ | ---------------
 dataPath | `string` | `'/data'` | URL dos assets
-unidade | `string`, `number` | `'br'` | Cód. IBGE ou sigla da UF. Ex.: `52`, `'df'`
-regiao | `string` | `'federacao'` | Valores permitidos:  `'mesorregiao'`, `'microrregiao'`, `'municipio'`, `'federacao'`
+unidade | <ul><li>`string`</li><li>`number`</li></ul> | `'br'` | Cód. IBGE ou sigla da UF. Ex.: `52`, `'df'`
+regiao | `string` | `'federacao'` | Valores permitidos:  <ul><li>`'mesorregiao'`</li><li>`'microrregiao'`</li><li>`'municipio'`</li><li>`'federacao'`</li></ul> 
 defaultFillColor | `string` | `'#FFF3E3'` | -
 defaultStrokeColor | `string` | `'#1F1A17'` | -
-unidadeData | `Array`, `Promise` | - | -
-onClick | `function` | - | -
+unidadeData | <ul><li>`Array`</li><li>`Promise`</li></ul>  | - | -
+onClick | `function` | - | Ex.: `(data) => {}`
 
 ## Exemplos
 
