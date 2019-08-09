@@ -1,5 +1,6 @@
 "use strict";
 
+const fs = require('fs');
 const assert = require('assert');
 const jsdom = require("jsdom");
 const mapaBrasil = require('../src/mapa-brasil');
@@ -11,8 +12,12 @@ describe('MapaBrasil', () => {
   it('draw', () => {
 
     mapaBrasil(dom.window.document.getElementById('mapa'), {
+      dataPath: '../data',
       dataFileLoader: (isJson, path) => {
-        return "";
+        return new Promise((resolve, reject) => {
+          const content = fs.readFileSync(path).toString();
+          resolve(isJson ? JSON.stringify(content) : content);
+        });
       }
     })
   });
