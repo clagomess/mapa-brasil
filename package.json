@@ -4,7 +4,11 @@
   "description": "Gráfico dinámico do mapa do Brasil",
   "main": "src/mapa-brasil.js",
   "keywords": [
-    "svg", "ibge", "mapa", "chart", "brasil"
+    "svg",
+    "ibge",
+    "mapa",
+    "chart",
+    "brasil"
   ],
   "scripts": {
     "test": "mocha",
@@ -27,6 +31,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.0.4",
     "html-webpack-plugin": "^3.2.0",
+    "jsdom": "^15.1.1",
     "mocha": "^6.2.0",
     "webpack": "^4.39.0",
     "webpack-cli": "^3.3.6",

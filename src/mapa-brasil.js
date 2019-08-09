@@ -1,4 +1,7 @@
-require('whatwg-fetch');
+if(!(typeof window === 'undefined')) { // not Node
+  require('whatwg-fetch');
+}
+
 const validateOptions = require('./core/validate-options');
 const constantes = require('./core/constantes');
 
@@ -11,9 +14,12 @@ module.exports = (element, options) => {
 let draw = (element, options) => {
   options = validateOptions(options);
 
+  const pathJson = getPath(options, false);
+  const pathSvg = getPath(options, true);
+
   Promise.all([
-    loadDataFile(false, getPath(options, false)),
-    loadDataFile(true, getPath(options, true)),
+    options.hasOwnProperty('dataFileLoader') ? options.dataFileLoader(false, pathJson) : loadDataFile(false, pathJson),
+    options.hasOwnProperty('dataFileLoader')? options.dataFileLoader(true, pathSvg) : loadDataFile(true, pathSvg),
     options.unidadeData
   ]).then(result => {
     element.innerHTML = result[0];
