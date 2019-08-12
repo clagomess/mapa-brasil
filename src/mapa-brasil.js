@@ -19,7 +19,7 @@ let draw = (element, options) => {
 
   Promise.all([
     options.hasOwnProperty('dataFileLoader') ? options.dataFileLoader(false, pathJson) : loadDataFile(false, pathJson),
-    options.hasOwnProperty('dataFileLoader')? options.dataFileLoader(true, pathSvg) : loadDataFile(true, pathSvg),
+    options.hasOwnProperty('dataFileLoader') ? options.dataFileLoader(true, pathSvg) : loadDataFile(true, pathSvg),
     options.unidadeData
   ]).then(result => {
     element.innerHTML = result[0];
@@ -47,6 +47,11 @@ let draw = (element, options) => {
           options.onClick({codIbge: codIbge, nomUnidade: nomUnidade})
         }
       }
+    }
+
+    // trigger
+    if(options.hasOwnProperty('onDrawComplete')){
+      options.onDrawComplete(element, result[1]);
     }
   });
 };
