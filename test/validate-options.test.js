@@ -4,7 +4,8 @@ const validateOptions = require('../src/core/validate-options');
 const assert = require('assert');
 
 describe('ValidateOptions', () => {
-  const listThrowsObjects = [1234, 'ceilandia', [], null, undefined];
+  const listThrowsObjects = [1234, 'ceilandia', [], null, undefined, new Promise((resolve) => resolve(true))];
+  const listThrowsObjectsB = [1234, 'ceilandia', null, undefined];
 
   it('validateUnidade', () => {
     assert.strictEqual(validateOptions({}).unidade, 'br');
@@ -40,8 +41,8 @@ describe('ValidateOptions', () => {
     assert.ok(validateOptions({unidadeData: []}).unidadeData instanceof Promise);
     assert.ok(validateOptions({unidadeData: new Promise(() => null)}).unidadeData instanceof Promise);
 
-    listThrowsObjects.forEach(item => {
-      assert.throws(() => validateOptions({qualidade: item}).qualidade);
+    listThrowsObjectsB.forEach(item => {
+      assert.throws(() => validateOptions({unidadeData: item}).unidadeData);
     });
   });
 

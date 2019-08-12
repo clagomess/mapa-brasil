@@ -9,9 +9,6 @@ describe('JsonEstrutura', () => {
   it('mesorregiao', () => {
     constantes.listUfSigla.forEach((sgl) => {
       let filename = sgl === 'br' ? 'br_mesorregioes.json' : sgl + '_mesorregioes.json';
-
-      console.log(`Testando: ${filename}`);
-
       let json = JSON.parse(fs.readFileSync('data/json/mesorregioes/' + filename).toString());
 
       assert.ok(json.length);
@@ -26,9 +23,6 @@ describe('JsonEstrutura', () => {
   it('microrregiao', () => {
     constantes.listUfSigla.forEach((sgl) => {
       let filename = sgl === 'br' ? 'br_microrregioes.json' : sgl + '_microrregioes.json';
-
-      console.log(`Testando: ${filename}`);
-
       let json = JSON.parse(fs.readFileSync('data/json/microrregioes/' + filename).toString());
 
       assert.ok(json.length);
@@ -43,9 +37,6 @@ describe('JsonEstrutura', () => {
   it('municipio', () => {
     constantes.listUfSigla.forEach((sgl) => {
       let filename = sgl === 'br' ? 'br_municipios.json' : sgl + '_municipios.json';
-
-      console.log(`Testando: ${filename}`);
-
       let json = JSON.parse(fs.readFileSync('data/json/municipios/' + filename).toString());
 
       assert.ok(json.length);
@@ -59,9 +50,6 @@ describe('JsonEstrutura', () => {
 
   it('unidadeFederacao', () => {
     let filename = 'br_unidades_da_federacao.json';
-
-    console.log(`Testando: ${filename}`);
-
     let json = JSON.parse(fs.readFileSync('data/json/federacao/' + filename).toString());
 
     assert.ok(json.length);
@@ -76,8 +64,6 @@ describe('JsonEstrutura', () => {
 
 describe('SvgEstrutura', () => {
   let fnCompare = (filename) => {
-    console.log(`Testando: ${filename}.svg`);
-
     // SVG
     let svgRaw = fs.readFileSync('data/svg/low/' + filename + '.svg').toString();
     let svgJson = JSON.parse(xmlJs.xml2json(svgRaw, {compact: true, spaces: 2}));
