@@ -1,4 +1,6 @@
-if(!(typeof window === 'undefined')) { // not Node
+const IS_NODE = (typeof window === 'undefined');
+
+if(!IS_NODE) { // not Node
   require('whatwg-fetch');
 }
 
@@ -18,7 +20,10 @@ let draw = (element, options) => {
   // init DOM
   element.classList.add('mapa-brasil');
   element.innerHTML = `<div class="loader"></div><div class="svg-container" style="display: none"></div>`;
-  createCssHeader();
+
+  if(!IS_NODE) {
+    createCssHeader();
+  }
 
   const pathJson = getPath(options, false);
   const pathSvg = getPath(options, true);
