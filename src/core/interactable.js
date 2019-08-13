@@ -29,6 +29,16 @@ let dragEvent = (svgContainer) => {
   svgContainer.addEventListener('dragend', onDrag);
 };
 
+let mouseWheel = (element) => {
+  const svgEl = element.getElementsByClassName('svg-container')[0].getElementsByTagName('svg')[0];
+  let svgWidth = svgEl.clientWidth;
+
+  element.addEventListener('wheel', (evt) => {
+    svgWidth = (svgWidth - evt.deltaY) > 0 ? svgWidth - evt.deltaY : svgWidth;
+    svgEl.style.width = svgWidth + 'px';
+  });
+};
+
 module.exports = (element) => {
   element.style.position = 'relative';
   element.style.overflow = 'hidden';
@@ -43,4 +53,7 @@ module.exports = (element) => {
 
   // DRAG EVENT
   dragEvent(svgContainer);
+
+  // MOUSE WHEEL
+  mouseWheel(element);
 };
