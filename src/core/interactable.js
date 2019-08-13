@@ -1,18 +1,6 @@
 'use strict';
 
-module.exports = (element) => {
-  element.style.position = 'relative';
-  element.style.overflow = 'hidden';
-
-  let svgContainer = element.getElementsByClassName('svg-container')[0];
-  svgContainer.style.position = 'absolute';
-  svgContainer.style.top = '0px';
-  svgContainer.style.left = '0px';
-  svgContainer.style.width = '100%';
-  svgContainer.style.cursor = 'grab';
-  svgContainer.setAttribute('draggable', 'true');
-
-  // Drag Event
+let dragEvent = (svgContainer) => {
   let dragClientY = 0;
   let dragClientX = 0;
   let dragPosY = 0;
@@ -39,4 +27,20 @@ module.exports = (element) => {
   svgContainer.addEventListener('dragstart', onDragStart);
   svgContainer.addEventListener('drag', onDrag);
   svgContainer.addEventListener('dragend', onDrag);
+};
+
+module.exports = (element) => {
+  element.style.position = 'relative';
+  element.style.overflow = 'hidden';
+
+  let svgContainer = element.getElementsByClassName('svg-container')[0];
+  svgContainer.style.position = 'absolute';
+  svgContainer.style.top = '0px';
+  svgContainer.style.left = '0px';
+  svgContainer.style.width = '100%';
+  svgContainer.style.cursor = 'grab';
+  svgContainer.setAttribute('draggable', 'true');
+
+  // DRAG EVENT
+  dragEvent(svgContainer);
 };
