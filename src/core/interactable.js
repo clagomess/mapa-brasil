@@ -33,10 +33,9 @@ let dragEvent = (svgContainer) => {
 
 let mouseWheelEvent = (element) => {
   const svgEl = element.getElementsByClassName('svg-container')[0].getElementsByTagName('svg')[0];
-  let svgWidth = svgEl.clientWidth; //@TODO: Firefox Issue: 0 width
+  let svgWidth = svgEl.clientWidth !== 0 ? svgEl.clientWidth : element.clientWidth;
 
   //@TODO: implementar zoom centralizado
-  console.log(svgEl);
 
   element.addEventListener('wheel', (evt) => {
     evt.preventDefault();
