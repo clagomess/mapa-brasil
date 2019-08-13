@@ -9,6 +9,7 @@ module.exports = (element) => {
   svgContainer.style.top = '0px';
   svgContainer.style.left = '0px';
   svgContainer.style.width = '100%';
+  svgContainer.style.cursor = 'grab';
   svgContainer.setAttribute('draggable', 'true');
 
   // Drag Event
