@@ -4,6 +4,7 @@ if(!(typeof window === 'undefined')) { // not Node
 
 const validateOptions = require('./core/validate-options');
 const constantes = require('./core/constantes');
+const interactable = require('./core/interactable');
 
 'use strict';
 
@@ -22,10 +23,13 @@ let draw = (element, options) => {
     options.hasOwnProperty('dataFileLoader') ? options.dataFileLoader(true, pathSvg) : loadDataFile(true, pathSvg),
     options.unidadeData
   ]).then(result => {
-    element.innerHTML = result[0];
+    element.innerHTML = `<div class="svg-container">${result[0]}</div>`;
+
+    // interactable
+    interactable(element);
 
     // SVG
-    let svgEl = element.getElementsByTagName('svg')[0];
+    let svgEl = element.getElementsByClassName('svg-container')[0].getElementsByTagName('svg')[0];
     svgEl.style.width = '100%';
     svgEl.style.height = 'auto';
 
