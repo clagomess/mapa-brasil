@@ -30,8 +30,6 @@ let dragEvent = (svgContainer) => {
     svgContainer.style.left = dragPosX + 'px';
   };
 
-  //@TODO: alterar cursor quando "dragstart"
-
   svgContainer.addEventListener('mousedown', onDragStart);
   svgContainer.addEventListener('mousemove', onDrag);
   svgContainer.addEventListener('mouseup', () => moving = false);
@@ -40,8 +38,6 @@ let dragEvent = (svgContainer) => {
 let mouseWheelEvent = (element) => {
   const svgEl = element.getElementsByClassName('svg-container')[0].getElementsByTagName('svg')[0];
   let svgWidth = svgEl.clientWidth !== 0 ? svgEl.clientWidth : element.clientWidth;
-
-  //@TODO: implementar zoom centralizado
 
   element.addEventListener('wheel', (evt) => {
     evt.preventDefault();
