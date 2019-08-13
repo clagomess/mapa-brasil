@@ -41,5 +41,46 @@ module.exports = {
     'microrregiao': 'microrregioes',
     'municipio': 'municipios',
     'federacao': 'federacao',
-  }
+  },
+
+  css: `
+  .mapa-brasil .loader{
+        position: absolute;
+        z-index: 3000;
+        top: calc(50% - 7px);
+        left: calc(50% - 7px);
+        width: 14px;
+        height: 14px;
+        border: solid 2px transparent;
+        border-top-color: #29d;
+        border-left-color: #29d;
+        border-radius: 10px;
+        -webkit-animation: pace-spinner 400ms linear infinite;
+        -moz-animation: pace-spinner 400ms linear infinite;
+        -ms-animation: pace-spinner 400ms linear infinite;
+        -o-animation: pace-spinner 400ms linear infinite;
+        animation: pace-spinner 400ms linear infinite;
+    }
+
+    @-webkit-keyframes pace-spinner {
+        0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+    }
+    @-moz-keyframes pace-spinner {
+        0% { -moz-transform: rotate(0deg); transform: rotate(0deg); }
+        100% { -moz-transform: rotate(360deg); transform: rotate(360deg); }
+    }
+    @-o-keyframes pace-spinner {
+        0% { -o-transform: rotate(0deg); transform: rotate(0deg); }
+        100% { -o-transform: rotate(360deg); transform: rotate(360deg); }
+    }
+    @-ms-keyframes pace-spinner {
+        0% { -ms-transform: rotate(0deg); transform: rotate(0deg); }
+        100% { -ms-transform: rotate(360deg); transform: rotate(360deg); }
+    }
+    @keyframes pace-spinner {
+        0% { transform: rotate(0deg); transform: rotate(0deg); }
+        100% { transform: rotate(360deg); transform: rotate(360deg); }
+    }
+  `
 };

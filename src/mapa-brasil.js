@@ -15,6 +15,11 @@ module.exports = (element, options) => {
 let draw = (element, options) => {
   options = validateOptions(options);
 
+  // init DOM
+  element.classList.add('mapa-brasil');
+  element.innerHTML = `<div class="loader"></div><div class="svg-container" style="display: none"></div>`;
+  createCssHeader();
+
   const pathJson = getPath(options, false);
   const pathSvg = getPath(options, true);
 
@@ -23,7 +28,8 @@ let draw = (element, options) => {
     options.hasOwnProperty('dataFileLoader') ? options.dataFileLoader(true, pathSvg) : loadDataFile(true, pathSvg),
     options.unidadeData
   ]).then(result => {
-    element.innerHTML = `<div class="svg-container">${result[0]}</div>`;
+    // container
+    element.getElementsByClassName('svg-container')[0].innerHTML = result[0];
 
     // interactable
     interactable(element);
@@ -57,7 +63,31 @@ let draw = (element, options) => {
     if(options.hasOwnProperty('onDrawComplete')){
       options.onDrawComplete(element, result[1]);
     }
+
+    // close-loader
+    closeLoader(element);
   });
+};
+
+let closeLoader = (element) => {
+  const loader = element.getElementsByClassName('loader')[0];
+  const svgContainer = element.getElementsByClassName('svg-container')[0];
+
+  loader.style.display = 'none';
+  svgContainer.style.display = 'block';
+};
+
+let createCssHeader = () => {
+  if(document.getElementById('mapa-brasil-css')){
+    return;
+  }
+
+  let style = document.createElement('style');
+  style.setAttribute("type", "text/css");
+  style.setAttribute("id", "mapa-brasil-css");
+  style.innerHTML = constantes.css;
+
+  document.head.appendChild(style);
 };
 
 let getPath = function(options, isJson) {
