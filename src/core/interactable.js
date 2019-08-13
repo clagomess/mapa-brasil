@@ -36,11 +36,10 @@ let mouseWheelEvent = (element) => {
   let svgWidth = svgEl.clientWidth; //@TODO: Firefox Issue: 0 width
 
   //@TODO: implementar zoom centralizado
-  //@TODO: desabilidar scroll no body
   console.log(svgEl);
 
   element.addEventListener('wheel', (evt) => {
-    console.log(evt);
+    evt.preventDefault();
     svgWidth = (svgWidth - evt.deltaY) > 0 ? svgWidth - evt.deltaY : svgWidth;
     svgEl.style.width = svgWidth + 'px';
   });
@@ -48,11 +47,13 @@ let mouseWheelEvent = (element) => {
 
 let touchEvent = (svgContainer) => {
   let onStart = (evt) => {
+    evt.preventDefault();
     dragClientY = evt.changedTouches[0].clientY - dragPosY;
     dragClientX = evt.changedTouches[0].clientX - dragPosX;
   };
 
   let onDrag = (evt) => {
+    evt.preventDefault();
     dragPosY = (evt.changedTouches[0].clientY - dragClientY);
     dragPosX = (evt.changedTouches[0].clientX - dragClientX);
 
