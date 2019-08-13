@@ -11,8 +11,7 @@
     "brasil"
   ],
   "scripts": {
-    "test": "mocha",
-    "test-with-coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --check-leaks  --timeout 30000 --reporter spec test/",
+    "test": "istanbul cover node_modules/mocha/bin/_mocha",
     "serve": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
   },
