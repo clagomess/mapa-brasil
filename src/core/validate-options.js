@@ -1,40 +1,40 @@
-const constantes = require('./constantes');
+const constantes = require("./constantes");
 
-'use strict';
+"use strict";
 
 module.exports = (options) => {
   // check
-  if (!options.hasOwnProperty('dataPath')) {
-    options.dataPath = '/data';
+  if (!options.hasOwnProperty("dataPath")) {
+    options.dataPath = "/data";
   }
 
-  if (!options.hasOwnProperty('unidade')) {
-    options.unidade = 'br';
+  if (!options.hasOwnProperty("unidade")) {
+    options.unidade = "br";
   }else{
     options.unidade = validateUnidade(options.unidade);
   }
 
-  if (!options.hasOwnProperty('regiao')) {
-    options.regiao = 'federacao';
+  if (!options.hasOwnProperty("regiao")) {
+    options.regiao = "federacao";
   }else{
     options.regiao = validateRegiao(options.regiao);
   }
 
-  if (!options.hasOwnProperty('qualidade')) {
-    options.qualidade = 'low';
+  if (!options.hasOwnProperty("qualidade")) {
+    options.qualidade = "low";
   }else{
     options.qualidade = validateQualidade(options.qualidade);
   }
 
-  if (!options.hasOwnProperty('defaultFillColor')) {
-    options.defaultFillColor = '#FFF3E3';
+  if (!options.hasOwnProperty("defaultFillColor")) {
+    options.defaultFillColor = "#FFF3E3";
   }
 
-  if (!options.hasOwnProperty('defaultStrokeColor')) {
-    options.defaultStrokeColor = '#1F1A17';
+  if (!options.hasOwnProperty("defaultStrokeColor")) {
+    options.defaultStrokeColor = "#1F1A17";
   }
 
-  if (!options.hasOwnProperty('unidadeData')) {
+  if (!options.hasOwnProperty("unidadeData")) {
     options.unidadeData = new Promise((resolve => {
       resolve([]);
     }));
@@ -55,7 +55,7 @@ module.exports = (options) => {
 
 // unidade
 let validateUnidade = (unidade) =>{
-  if((typeof unidade) != 'number' && (typeof unidade) != 'string'){
+  if((typeof unidade) != "number" && (typeof unidade) != "string"){
     throw new Error("options.unidade: esperado {number} ou {string}");
   }
 
@@ -74,7 +74,7 @@ let validateUnidade = (unidade) =>{
 
 // regiao
 let validateRegiao = (regiao) => {
-  if((typeof regiao) != 'string'){
+  if((typeof regiao) != "string"){
     throw new Error("options.regiao: esperado {string}");
   }
 
@@ -87,11 +87,11 @@ let validateRegiao = (regiao) => {
 
 // qualidade
 let validateQualidade = (qualidade) => {
-  if((typeof qualidade) != 'string'){
+  if((typeof qualidade) != "string"){
     throw new Error("options.qualidade: esperado {string}");
   }
 
-  if(qualidade !== 'low'){
+  if(qualidade !== "low"){
     throw new Error(`options.qualidade: "${regiao}" => valor invalido`);
   }
 
