@@ -6,35 +6,35 @@ let dragPosY = 0;
 let dragPosX = 0;
 
 let dragEvent = (svgContainer) => {
+  let moving = false;
+
   let onDragStart = (evt) => {
+    evt.preventDefault();
+    moving = true;
+
     dragClientY = evt.clientY - dragPosY;
     dragClientX = evt.clientX - dragPosX;
-
-    evt.dataTransfer.setData('Text', 'foo'); // Firefox Workaround
-
-    // prevent ghost
-    let img = new Image();
-    img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';
-    evt.dataTransfer.setDragImage(img, 0, 0);
-
-    return false;
   };
 
   let onDrag = (evt) => {
-    dragPosY = (evt.clientY - dragClientY); //@TODO: Firefox Issue: evt.clientY = 0
-    dragPosX = (evt.clientX - dragClientX); //@TODO: Firefox Issue: evt.clientX = 0
+    evt.preventDefault();
+
+    if(!moving){
+      return;
+    }
+
+    dragPosY = (evt.clientY - dragClientY);
+    dragPosX = (evt.clientX - dragClientX);
 
     svgContainer.style.top = dragPosY + 'px';
     svgContainer.style.left = dragPosX + 'px';
-
-    return false;
   };
 
   //@TODO: alterar cursor quando "dragstart"
 
-  svgContainer.addEventListener('dragstart', onDragStart);
-  svgContainer.addEventListener('drag', onDrag);
-  svgContainer.addEventListener('dragend', onDrag);
+  svgContainer.addEventListener('mousedown', onDragStart);
+  svgContainer.addEventListener('mousemove', onDrag);
+  svgContainer.addEventListener('mouseup', () => moving = false);
 };
 
 let mouseWheelEvent = (element) => {
