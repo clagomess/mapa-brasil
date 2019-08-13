@@ -1,11 +1,11 @@
 'use strict';
 
-let dragEvent = (svgContainer) => {
-  let dragClientY = 0;
-  let dragClientX = 0;
-  let dragPosY = 0;
-  let dragPosX = 0;
+let dragClientY = 0;
+let dragClientX = 0;
+let dragPosY = 0;
+let dragPosX = 0;
 
+let dragEvent = (svgContainer) => {
   let onDragStart = (evt) => {
     dragClientY = evt.clientY - dragPosY;
     dragClientX = evt.clientX - dragPosX;
@@ -31,17 +31,38 @@ let dragEvent = (svgContainer) => {
   svgContainer.addEventListener('dragend', onDrag);
 };
 
-let mouseWheel = (element) => {
+let mouseWheelEvent = (element) => {
   const svgEl = element.getElementsByClassName('svg-container')[0].getElementsByTagName('svg')[0];
-  let svgWidth = svgEl.clientWidth;
+  let svgWidth = svgEl.clientWidth; //@TODO: Firefox Issue: 0 width
 
   //@TODO: implementar zoom centralizado
   //@TODO: desabilidar scroll no body
+  console.log(svgEl);
 
   element.addEventListener('wheel', (evt) => {
+    console.log(evt);
     svgWidth = (svgWidth - evt.deltaY) > 0 ? svgWidth - evt.deltaY : svgWidth;
     svgEl.style.width = svgWidth + 'px';
   });
+};
+
+let touchEvent = (svgContainer) => {
+  let onStart = (evt) => {
+    dragClientY = evt.changedTouches[0].clientY - dragPosY;
+    dragClientX = evt.changedTouches[0].clientX - dragPosX;
+  };
+
+  let onDrag = (evt) => {
+    dragPosY = (evt.changedTouches[0].clientY - dragClientY);
+    dragPosX = (evt.changedTouches[0].clientX - dragClientX);
+
+    svgContainer.style.top = dragPosY + 'px';
+    svgContainer.style.left = dragPosX + 'px';
+  };
+
+  svgContainer.addEventListener('touchstart', onStart);
+  svgContainer.addEventListener('touchmove', onDrag);
+  svgContainer.addEventListener('touchend', onDrag);
 };
 
 module.exports = (element) => {
@@ -57,8 +78,11 @@ module.exports = (element) => {
   svgContainer.setAttribute('draggable', 'true');
 
   // DRAG EVENT
-  dragEvent(svgContainer);
+  dragEvent(svgContainer); //@TODO: Firefox Issue
 
   // MOUSE WHEEL
-  mouseWheel(element);
+  mouseWheelEvent(element);
+
+  // TOUCH EVENT
+  touchEvent(svgContainer);
 };
