@@ -1,6 +1,8 @@
 # git ignore
 .idea
 node_modules
+/coverage
+/.nyc_output
 
 # only npm publish
 /test
