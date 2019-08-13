@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 let dragClientY = 0;
 let dragClientX = 0;
@@ -26,23 +26,23 @@ let dragEvent = (svgContainer) => {
     dragPosY = (evt.clientY - dragClientY);
     dragPosX = (evt.clientX - dragClientX);
 
-    svgContainer.style.top = dragPosY + 'px';
-    svgContainer.style.left = dragPosX + 'px';
+    svgContainer.style.top = dragPosY + "px";
+    svgContainer.style.left = dragPosX + "px";
   };
 
-  svgContainer.addEventListener('mousedown', onDragStart);
-  svgContainer.addEventListener('mousemove', onDrag);
-  svgContainer.addEventListener('mouseup', () => moving = false);
+  svgContainer.addEventListener("mousedown", onDragStart);
+  svgContainer.addEventListener("mousemove", onDrag);
+  svgContainer.addEventListener("mouseup", () => moving = false);
 };
 
 let mouseWheelEvent = (element) => {
-  const svgEl = element.getElementsByClassName('svg-container')[0].getElementsByTagName('svg')[0];
+  const svgEl = element.getElementsByClassName("svg-container")[0].getElementsByTagName("svg")[0];
   let svgWidth = svgEl.clientWidth !== 0 ? svgEl.clientWidth : element.clientWidth;
 
-  element.addEventListener('wheel', (evt) => {
+  element.addEventListener("wheel", (evt) => {
     evt.preventDefault();
     svgWidth = (svgWidth - evt.deltaY) > 0 ? svgWidth - evt.deltaY : svgWidth;
-    svgEl.style.width = svgWidth + 'px';
+    svgEl.style.width = svgWidth + "px";
   });
 };
 
@@ -58,26 +58,26 @@ let touchEvent = (svgContainer) => {
     dragPosY = (evt.changedTouches[0].clientY - dragClientY);
     dragPosX = (evt.changedTouches[0].clientX - dragClientX);
 
-    svgContainer.style.top = dragPosY + 'px';
-    svgContainer.style.left = dragPosX + 'px';
+    svgContainer.style.top = dragPosY + "px";
+    svgContainer.style.left = dragPosX + "px";
   };
 
-  svgContainer.addEventListener('touchstart', onStart);
-  svgContainer.addEventListener('touchmove', onDrag);
-  svgContainer.addEventListener('touchend', onDrag);
+  svgContainer.addEventListener("touchstart", onStart);
+  svgContainer.addEventListener("touchmove", onDrag);
+  svgContainer.addEventListener("touchend", onDrag);
 };
 
 module.exports = (element) => {
-  element.style.position = 'relative';
-  element.style.overflow = 'hidden';
+  element.style.position = "relative";
+  element.style.overflow = "hidden";
 
-  let svgContainer = element.getElementsByClassName('svg-container')[0];
-  svgContainer.style.position = 'absolute';
-  svgContainer.style.top = '0px';
-  svgContainer.style.left = '0px';
-  svgContainer.style.width = '100%';
-  svgContainer.style.cursor = 'grab';
-  svgContainer.setAttribute('draggable', 'true');
+  let svgContainer = element.getElementsByClassName("svg-container")[0];
+  svgContainer.style.position = "absolute";
+  svgContainer.style.top = "0px";
+  svgContainer.style.left = "0px";
+  svgContainer.style.width = "100%";
+  svgContainer.style.cursor = "grab";
+  svgContainer.setAttribute("draggable", "true");
 
   // DRAG EVENT
   dragEvent(svgContainer);
