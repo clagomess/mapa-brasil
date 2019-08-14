@@ -1,6 +1,7 @@
 "use strict";
 
 module.exports = {
+  IS_NODE: (typeof window === "undefined"),
   listUfSigla: [
     "br",
     "ac", "al", "am", "ap",
