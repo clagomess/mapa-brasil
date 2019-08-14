@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "test": "mocha",
-    "test-with-coverage": "istanbul cover modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage",
+    "test-with-coverage": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage",
     "serve": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
   },
