@@ -1,83 +1,25 @@
-const IS_NODE = (typeof window === "undefined");
-
-if(!IS_NODE) { // not Node
-  require("whatwg-fetch");
-}
+"use strict";
 
 const validateOptions = require("./core/validate-options");
 const constantes = require("./core/constantes");
 const interactable = require("./core/interactable");
+const mapaUi = require("./core/mapa-ui");
+const mapaIo = require("./core/mapa-io");
 
-"use strict";
-
-let closeLoader = (element) => {
-  const loader = element.getElementsByClassName("loader")[0];
-  const svgContainer = element.getElementsByClassName("svg-container")[0];
-
-  loader.style.display = "none";
-  svgContainer.style.display = "block";
-};
-
-let createCssHeader = () => {
-  if(document.getElementById("mapa-brasil-css")){
-    return;
-  }
-
-  let style = document.createElement("style");
-  style.setAttribute("type", "text/css");
-  style.setAttribute("id", "mapa-brasil-css");
-  style.innerHTML = constantes.css;
-
-  document.head.appendChild(style);
-};
-
-let getPath = function(options, isJson) {
-  let path = options.dataPath;
-
-  if(isJson) {
-    path += `/json/${constantes.mapPath[options.regiao]}/`;
-  }else{
-    path += `/svg/${options.qualidade}/${constantes.mapPath[options.regiao]}/`;
-  }
-
-  if(options.regiao === "federacao"){
-    path += "br_unidades_da_federacao";
-  }else {
-    path += options.unidade + "_" + constantes.mapPath[options.regiao];
-  }
-
-  path += (isJson ? ".json" : ".svg");
-
-  return path;
-};
-
-let loadDataFile = async (isJson, path) => {
-  return new Promise((resolve, reject) => {
-    fetch(path).then((response) => {
-      return isJson ? response.json() : response.text();
-    }).then((content) => {
-      resolve(content);
-    }).catch(e => reject(e));
-  });
-};
+if(!constantes.IS_NODE) { // not Node
+  require("whatwg-fetch");
+}
 
 let draw = (element, options) => {
   options = validateOptions(options);
+  mapaUi.initDom(element);
 
-  // init DOM
-  element.classList.add("mapa-brasil");
-  element.innerHTML = `<div class="loader"></div><div class="svg-container" style="display: none"></div>`;
-
-  if(!IS_NODE) {
-    createCssHeader();
-  }
-
-  const pathJson = getPath(options, false);
-  const pathSvg = getPath(options, true);
+  const pathJson = mapaIo.getPath(options, false);
+  const pathSvg = mapaIo.getPath(options, true);
 
   Promise.all([
-    options.hasOwnProperty("dataFileLoader") ? options.dataFileLoader(false, pathJson) : loadDataFile(false, pathJson),
-    options.hasOwnProperty("dataFileLoader") ? options.dataFileLoader(true, pathSvg) : loadDataFile(true, pathSvg),
+    options.hasOwnProperty("dataFileLoader") ? options.dataFileLoader(false, pathJson) : mapaIo.loadDataFile(false, pathJson),
+    options.hasOwnProperty("dataFileLoader") ? options.dataFileLoader(true, pathSvg) : mapaIo.loadDataFile(true, pathSvg),
     options.unidadeData
   ]).then(result => {
     // container
@@ -116,7 +58,11 @@ let draw = (element, options) => {
     }
 
     // close-loader
-    closeLoader(element);
+    mapaUi.closeLoader(element);
+  }).catch((e) => {
+    //@TODO: implementar menssagem visual
+    console.error(e);
+    mapaUi.closeLoader(element);
   });
 };
 

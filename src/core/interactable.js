@@ -68,9 +68,6 @@ let touchEvent = (svgContainer) => {
 };
 
 module.exports = (element) => {
-  element.style.position = "relative";
-  element.style.overflow = "hidden";
-
   let svgContainer = element.getElementsByClassName("svg-container")[0];
   svgContainer.style.position = "absolute";
   svgContainer.style.top = "0px";
