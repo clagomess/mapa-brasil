@@ -61,7 +61,7 @@ let draw = (element, options) => {
     mapaUi.closeLoader(element);
   }).catch((e) => {
     //@TODO: implementar menssagem visual
-    Console.error(e);
+    console.error(e);
     mapaUi.closeLoader(element);
   });
 };
