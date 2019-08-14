@@ -2,6 +2,8 @@
 ![GitHub release](https://img.shields.io/github/release/clagomess/mapa-brasil)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/clagomess/mapa-brasil)
 ![Travis (.org)](https://img.shields.io/travis/clagomess/mapa-brasil)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/afa44e1b6c8b4e1c95bbe24ae2972937)](https://www.codacy.com/app/clagomess/mapa-brasil?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=clagomess/mapa-brasil&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/afa44e1b6c8b4e1c95bbe24ae2972937)](https://www.codacy.com/app/clagomess/mapa-brasil?utm_source=github.com&utm_medium=referral&utm_content=clagomess/mapa-brasil&utm_campaign=Badge_Coverage)
 
 ## Instalação
 ```
