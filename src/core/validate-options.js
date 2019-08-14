@@ -1,6 +1,58 @@
+"use strict";
+
 const constantes = require("./constantes");
 
-"use strict";
+// unidade
+let validateUnidade = (unidade) => {
+  if((typeof unidade) != "number" && (typeof unidade) != "string"){
+    throw new Error("options.unidade: esperado {number} ou {string}");
+  }
+
+  if(Number.isInteger(unidade)){
+    unidade = constantes.codIbgeEstadoToSigla[unidade];
+  }else{
+    unidade = unidade.toLowerCase();
+  }
+
+  if(!unidade || constantes.listUfSigla.indexOf(unidade) === -1){
+    throw new Error(`options.unidade: "${unidade}" => valor invalido`);
+  }
+
+  return unidade;
+};
+
+// regiao
+let validateRegiao = (regiao) => {
+  if((typeof regiao) != "string"){
+    throw new Error("options.regiao: esperado {string}");
+  }
+
+  if(!constantes.mapPath[regiao]){
+    throw new Error(`options.regiao: "${regiao}" => valor invalido`);
+  }
+
+  return regiao;
+};
+
+// qualidade
+let validateQualidade = (qualidade) => {
+  if((typeof qualidade) != "string"){
+    throw new Error("options.qualidade: esperado {string}");
+  }
+
+  if(qualidade !== "low"){
+    throw new Error(`options.qualidade: "${qualidade}" => valor invalido`);
+  }
+
+  return qualidade;
+};
+
+// unidadeData
+let validateUnidadeData = (unidadeData) => {
+  if(!(unidadeData instanceof Array) && !(unidadeData instanceof Promise)){
+    throw new Error("options.unidadeData: esperado {Array} ou {Promise}");
+  }
+};
 
 module.exports = (options) => {
   // check
@@ -44,63 +96,9 @@ module.exports = (options) => {
     if(options.unidadeData instanceof Array){
       options.unidadeData = new Promise((resolve => {
         resolve(options.unidadeData);
-      }))
+      }));
     }
   }
 
   return options;
-};
-
-// ### VALIDATE
-
-// unidade
-let validateUnidade = (unidade) =>{
-  if((typeof unidade) != "number" && (typeof unidade) != "string"){
-    throw new Error("options.unidade: esperado {number} ou {string}");
-  }
-
-  if(Number.isInteger(unidade)){
-    unidade = constantes.codIbgeEstadoToSigla[unidade];
-  }else{
-    unidade = unidade.toLowerCase();
-  }
-
-  if(!unidade || constantes.listUfSigla.indexOf(unidade) === -1){
-    throw new Error(`options.unidade: "${unidade}" => valor invalido`);
-  }
-
-  return unidade;
-};
-
-// regiao
-let validateRegiao = (regiao) => {
-  if((typeof regiao) != "string"){
-    throw new Error("options.regiao: esperado {string}");
-  }
-
-  if(!constantes.mapPath[regiao]){
-    throw new Error(`options.regiao: "${regiao}" => valor invalido`);
-  }
-
-  return regiao;
-};
-
-// qualidade
-let validateQualidade = (qualidade) => {
-  if((typeof qualidade) != "string"){
-    throw new Error("options.qualidade: esperado {string}");
-  }
-
-  if(qualidade !== "low"){
-    throw new Error(`options.qualidade: "${regiao}" => valor invalido`);
-  }
-
-  return qualidade;
-};
-
-// unidadeData
-let validateUnidadeData = (unidadeData) => {
-  if(!(unidadeData instanceof Array) && !(unidadeData instanceof Promise)){
-    throw new Error("options.unidadeData: esperado {Array} ou {Promise}");
-  }
 };
