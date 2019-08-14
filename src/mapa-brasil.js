@@ -104,10 +104,9 @@ let draw = (element, options) => {
       listPath[i].style.stroke = (unidadeData.hasOwnProperty("strokeColor") ? unidadeData.strokeColor : options.defaultStrokeColor);
       listPath[i].style.strokeWidth = (unidadeData.hasOwnProperty("strokeWidth") ? unidadeData.strokeWidth : 1);
       listPath[i].innerHTML = `<title>${nomUnidade}</title>`;
-      listPath[i].onclick = () => {
-        if(options.hasOwnProperty("onClick")){
-          options.onClick({codIbge: codIbge, nomUnidade: nomUnidade})
-        }
+
+      if(options.hasOwnProperty("onClick")){
+        listPath[i].onclick = () => options.onClick({codIbge: codIbge, nomUnidade: nomUnidade});
       }
     }
 
