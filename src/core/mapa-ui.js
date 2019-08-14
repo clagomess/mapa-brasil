@@ -26,7 +26,7 @@ module.exports = {
     };
 
     element.classList.add("mapa-brasil");
-    element.innerHTML = `<div class="loader"></div><div class="svg-container" style="display: none"></div>`;
+    element.innerHTML = '<div class="loader"></div><div class="svg-container" style="display: none"></div>';
     element.style.position = "relative";
     element.style.overflow = "hidden";
 

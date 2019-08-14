@@ -29,7 +29,7 @@ module.exports = {
         return isJson ? response.json() : response.text();
       }).then((content) => {
         resolve(content);
-      }).catch(e => reject(e));
+      }).catch((e) => reject(e));
     });
   }
 };
