@@ -93,6 +93,12 @@ module.exports = (element) => {
   svgContainer.style.cursor = "grab";
   svgContainer.setAttribute("draggable", "true");
 
+  // RESET VARS
+  dragClientY = 0;
+  dragClientX = 0;
+  dragPosY = 0;
+  dragPosX = 0;
+
   // DRAG EVENT
   dragEvent(svgContainer);
 
