@@ -1,6 +1,6 @@
 {
   "name": "mapa-brasil",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Gráfico dinámico do mapa do Brasil",
   "main": "src/mapa-brasil.js",
   "keywords": [
@@ -14,8 +14,7 @@
     "test": "mocha",
     "test-with-coverage": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage",
     "serve": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
-    "publish": "npm run build && npm publish"
+    "build": "webpack --config webpack.prod.js"
   },
   "author": "Cláudio Gomes",
   "homepage": "https://github.com/clagomess/mapa-brasil",
