@@ -5,6 +5,15 @@ let dragClientX = 0;
 let dragPosY = 0;
 let dragPosX = 0;
 
+let canSvgPathClickEvents = (svgContainer, can) => {
+  let svgEl = svgContainer.getElementsByTagName("svg")[0];
+  let listPath = svgEl.getElementsByTagName("g")[0].getElementsByTagName("path");
+
+  for (let i = 0; i < listPath.length; i++) {
+    listPath[i].style.pointerEvents = can ? '' : 'none';
+  }
+};
+
 let dragEvent = (svgContainer) => {
   let moving = false;
 
@@ -23,6 +32,8 @@ let dragEvent = (svgContainer) => {
       return;
     }
 
+    canSvgPathClickEvents(svgContainer, false);
+
     dragPosY = (evt.clientY - dragClientY);
     dragPosX = (evt.clientX - dragClientX);
 
@@ -30,10 +41,15 @@ let dragEvent = (svgContainer) => {
     svgContainer.style.left = dragPosX + "px";
   };
 
+  let onDragEnd = (evt) => {
+    moving = false;
+    canSvgPathClickEvents(svgContainer, true);
+  };
+
   svgContainer.addEventListener("mousedown", onDragStart);
   svgContainer.addEventListener("mousemove", onDrag);
-  svgContainer.addEventListener("mouseup", () => moving = false);
-  svgContainer.addEventListener("mouseleave", () => moving = false);
+  svgContainer.addEventListener("mouseup", onDragEnd);
+  svgContainer.addEventListener("mouseleave", onDragEnd);
 };
 
 let mouseWheelEvent = (element) => {
