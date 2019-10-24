@@ -48,7 +48,10 @@ let draw = (element, options) => {
       listPath[i].innerHTML = `<title>${nomUnidade}</title>`;
 
       if(options.hasOwnProperty("onClick")){
-        listPath[i].onclick = () => options.onClick({codIbge: codIbge, nomUnidade: nomUnidade});
+        listPath[i].onclick = (evt) => {
+          evt.preventDefault();
+          options.onClick({codIbge: codIbge, nomUnidade: nomUnidade});
+        }
       }
     }
 
@@ -60,7 +63,6 @@ let draw = (element, options) => {
     // close-loader
     mapaUi.closeLoader(element);
   }).catch((e) => {
-    //@TODO: implementar menssagem visual
     console.error(e);
     mapaUi.closeLoader(element);
   });
