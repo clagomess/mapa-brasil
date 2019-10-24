@@ -17,6 +17,7 @@
 <input type="button" value="Brasil -> Mesorregiao" onclick="brasilGoToMesorregiao()">
 <input type="button" value="Brasil -> Microrregiao" onclick="brasilGoToMicroregiao()">
 <input type="button" value="Brasil -> Município" onclick="brasilGoToMunicipio()">
+<input type="button" value="Município 6 digitos" onclick="municipio6Digitos()">
 
 <script type="text/javascript">
     function brasilFederacao() {
@@ -93,6 +94,19 @@
                         console.log(data)
                     }
                 });
+            }
+        });
+    }
+
+    function municipio6Digitos(){
+        MapaBrasil(document.getElementById('mapa'), {
+            unidade: 11,
+            regiao: 'municipio',
+            unidadeData: [
+                {codIbge: 110001, fillColor: '#d82b40'}
+            ],
+            onClick: function (data) {
+                console.log(data)
             }
         });
     }

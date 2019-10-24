@@ -39,7 +39,7 @@ let draw = (element, options) => {
       const codIbge = parseInt(result[1][i][constantes.codIbgeAttr[options.regiao]]);
       const nomUnidade = result[1][i][constantes.nomeUnidadeAttr[options.regiao]];
 
-      let unidadeData = result[2].filter(item => item.codIbge === codIbge);
+      let unidadeData = result[2].filter(item => item.codIbge == codIbge || (codIbge + "").substr(0, 6) == item.codIbge);
       unidadeData = unidadeData.length > 0 ? unidadeData[0] : {};
 
       listPath[i].style.fill = (unidadeData.hasOwnProperty("fillColor") ? unidadeData.fillColor : options.defaultFillColor);
