@@ -33,6 +33,7 @@ let dragEvent = (svgContainer) => {
   svgContainer.addEventListener("mousedown", onDragStart);
   svgContainer.addEventListener("mousemove", onDrag);
   svgContainer.addEventListener("mouseup", () => moving = false);
+  svgContainer.addEventListener("mouseleave", () => moving = false);
 };
 
 let mouseWheelEvent = (element) => {
