@@ -1,6 +1,6 @@
 {
   "name": "mapa-brasil",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gráfico dinámico do mapa do Brasil",
   "main": "src/mapa-brasil.js",
   "keywords": [
