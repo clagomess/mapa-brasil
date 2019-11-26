@@ -108,19 +108,23 @@ let fitSvgIntoContainer = (element) => {
 
   svgEl.style.width = (svgWidth >= containerWidth ? containerWidth : svgWidth) + 'px';
   svgEl.style.height = 'auto';
+
+  // margim left
+  dragPosX = ((containerWidth - svgWidth) / 2);
+  svgContainer.style.left = dragPosX + 'px';
 };
 
 module.exports = (element) => {
   let svgContainer = element.getElementsByClassName("svg-container")[0];
-
-  // FIT
-  fitSvgIntoContainer(element);
 
   // RESET VARS
   dragClientY = 0;
   dragClientX = 0;
   dragPosY = 0;
   dragPosX = 0;
+
+  // FIT
+  fitSvgIntoContainer(element);
 
   // DRAG EVENT
   dragEvent(svgContainer);
