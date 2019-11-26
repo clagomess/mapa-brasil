@@ -32,6 +32,8 @@ let dragEvent = (svgContainer) => {
       return;
     }
 
+    svgContainer.style.cursor = "grab";
+
     canSvgPathClickEvents(svgContainer, false);
 
     dragPosY = (evt.clientY - dragClientY);
@@ -42,6 +44,7 @@ let dragEvent = (svgContainer) => {
   };
 
   let onDragEnd = (evt) => {
+    svgContainer.style.cursor = "pointer";
     moving = false;
     canSvgPathClickEvents(svgContainer, true);
   };
@@ -96,7 +99,7 @@ let fitSvgIntoContainer = (element) => {
   svgContainer.style.position = "absolute";
   svgContainer.style.top = "0px";
   svgContainer.style.left = "0px";
-  svgContainer.style.cursor = "grab";
+  svgContainer.style.cursor = "pointer";
   svgContainer.setAttribute("draggable", "true");
 
   if(((containerWidth * svgHeight) / svgWidth) > containerHeight){
