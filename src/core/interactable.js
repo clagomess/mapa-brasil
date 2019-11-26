@@ -32,6 +32,8 @@ let dragEvent = (svgContainer) => {
       return;
     }
 
+    svgContainer.style.cursor = "grab";
+
     canSvgPathClickEvents(svgContainer, false);
 
     dragPosY = (evt.clientY - dragClientY);
@@ -42,6 +44,7 @@ let dragEvent = (svgContainer) => {
   };
 
   let onDragEnd = (evt) => {
+    svgContainer.style.cursor = "pointer";
     moving = false;
     canSvgPathClickEvents(svgContainer, true);
   };
@@ -84,20 +87,44 @@ let touchEvent = (svgContainer) => {
   svgContainer.addEventListener("touchend", onDrag);
 };
 
-module.exports = (element) => {
+let fitSvgIntoContainer = (element) => {
   let svgContainer = element.getElementsByClassName("svg-container")[0];
+  let svgEl = svgContainer.getElementsByTagName("svg")[0];
+
+  const containerWidth = element.clientWidth;
+  const containerHeight = element.clientHeight;
+  let svgWidth = +svgEl.getAttribute('width');
+  let svgHeight = +svgEl.getAttribute('height');
+
   svgContainer.style.position = "absolute";
   svgContainer.style.top = "0px";
   svgContainer.style.left = "0px";
-  svgContainer.style.width = "100%";
-  svgContainer.style.cursor = "grab";
+  svgContainer.style.cursor = "pointer";
   svgContainer.setAttribute("draggable", "true");
+
+  if(((containerWidth * svgHeight) / svgWidth) > containerHeight){
+    svgWidth = (containerHeight * svgWidth) / svgHeight;
+  }
+
+  svgEl.style.width = (svgWidth >= containerWidth ? containerWidth : svgWidth) + 'px';
+  svgEl.style.height = 'auto';
+
+  // margim left
+  dragPosX = ((containerWidth - svgWidth) / 2);
+  svgContainer.style.left = dragPosX + 'px';
+};
+
+module.exports = (element) => {
+  let svgContainer = element.getElementsByClassName("svg-container")[0];
 
   // RESET VARS
   dragClientY = 0;
   dragClientX = 0;
   dragPosY = 0;
   dragPosX = 0;
+
+  // FIT
+  fitSvgIntoContainer(element);
 
   // DRAG EVENT
   dragEvent(svgContainer);
