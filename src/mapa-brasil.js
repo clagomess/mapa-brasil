@@ -30,8 +30,6 @@ let draw = (element, options) => {
 
     // SVG
     let svgEl = element.getElementsByClassName("svg-container")[0].getElementsByTagName("svg")[0];
-    svgEl.style.width = "100%";
-    svgEl.style.height = "auto";
 
     // paths
     let listPath = svgEl.getElementsByTagName("g")[0].getElementsByTagName("path");
