@@ -21,6 +21,6 @@ type Options = {
   onClick?: (data: { codIbge: number, nomUnidade: string }) => void
 };
 
-declare function MapaBrasil(element: HTMLElement, options: Options);
+declare function MapaBrasil(element: HTMLElement, options: Options): void;
 
-export default function (element: HTMLElement, options: Options);
+export default function (element: HTMLElement, options: Options): void;
