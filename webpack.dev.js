@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
@@ -10,14 +10,16 @@ module.exports = merge(common, {
 
   plugins: [
     new CleanWebpackPlugin(),
-    new CopyWebpackPlugin([{from: 'data', to: 'data'}]),
+    new CopyWebpackPlugin({
+      patterns: [{from: 'data', to: 'data'}]
+    }),
     new HtmlWebpackPlugin({
       template: "index.html"
     }),
   ],
 
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    static: path.join(__dirname, 'dist'),
     compress: true,
     host: '0.0.0.0',
     port: 3000
