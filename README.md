@@ -1,6 +1,7 @@
 # mapa-brasil
 ![GitHub release](https://img.shields.io/github/release/clagomess/mapa-brasil)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/clagomess/mapa-brasil)
+![GitHub Action](https://img.shields.io/github/workflow/status/clagomess/mapa-brasil/Node%20CI)
 
 ## Instalação
 ```
